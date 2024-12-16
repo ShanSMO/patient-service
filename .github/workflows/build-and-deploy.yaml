@@ -20,6 +20,6 @@ jobs:
           
       - name: Build and Push Docker Image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }} .
-          docker push ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }}  
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/notifiation-service:${{ github.sha }} .
+          docker push ${{ secrets.DOCKER_USERNAME }}/notifiation-service:${{ github.sha }}  
             
