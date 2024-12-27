@@ -10,10 +10,15 @@ const timeLog = (_req: any, _res: any, next: () => void) => {
   }
 router.use(timeLog)
 
+router.get('/health', (req, res) => {
+    res.status(StatusCodes.OK).json({message: 'healthy'})
+});
+
+
 router.get('/all', (req, res) => {
     getAllPatients().then((data) => {
         console.log(data);
-        res.status(StatusCodes.CREATED).json({message: 'Patient registered successfully !', data: data})
+        res.status(StatusCodes.OK).json({message: 'Success', data: data})
     }).catch((error) => {
         console.log("Error while fetching patient list", error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message: 'Error while fetching patient list'})
@@ -26,10 +31,10 @@ router.get('/', (req, res) => {
         nic: req.query.nic as string,
     }
     getPatient(patient).then((data) => {
-        res.status(StatusCodes.CREATED).json({message: 'Patient registered successfully !', data: data})
+        res.status(StatusCodes.OK).json({message: 'Success', data: data})
     }).catch((error) => {
-        console.log("Error while fetching patient list", error);
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message: 'Error while fetching patient list'})
+        console.log("Error while fetching patient data", error);
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message: 'Error while fetching patient data'})
     });
 })
 
